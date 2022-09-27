@@ -36,10 +36,10 @@ export const GetUserData = ({ setRes, users, setUsers }) => {
           method: "DELETE",
         }
       ).then((res) => res.json());
-      if (response.flage === true) {
-        const deletedUsers = users.filter((user) => user.Customer_ID !== id);
-        setUsers(deletedUsers);
-      }
+      
+      const deletedUsers = await users.filter((user) => user.Customer_ID !== id);
+      await setUsers(deletedUsers);
+      
       setRes(response.message);
     } catch (err) {
       setRes(err.message);
@@ -66,10 +66,7 @@ export const GetUserData = ({ setRes, users, setUsers }) => {
         `${process.env.REACT_APP_API}/user-details/update/userdata/${user.Customer_ID}`,
         requestOptions
       ).then((res) => res.json());
-      if (response.flage !== true) {
-        setRes(response.message);
-        return;
-      }
+            
       setUsers(
         users.map((editUser) => {
           if (editUser.Customer_ID === user.Customer_ID) {

@@ -19,8 +19,9 @@ export const InsertUser = ({ setRes, users, setUsers }) => {
   const [errors, setErrors] = useState({});
   setRes("");
   const InsertUserDB = async (user) => {
-    setErrors(validate(user));
-    if (Object.keys(errors).length !== 0) {
+    const error = validate(user);
+    setErrors(error);
+    if (Object.keys(error).length !== 0) {
       return;
     }
     const requestOptions = {
@@ -43,10 +44,6 @@ export const InsertUser = ({ setRes, users, setUsers }) => {
         `${process.env.REACT_APP_API}/user-details/signup`,
         requestOptions
       ).then((res) => res.json());
-      if (response.flage !== true){
-        alert(response.message);
-        return;
-      }
       setUsers([...users, user]);
       setRes(response.message);
       history.push("/");
@@ -122,10 +119,21 @@ export const InsertUser = ({ setRes, users, setUsers }) => {
           <br />
           <label>Enter location</label>
           <br />
-          <input
-            type="text"
-            onChange={(e) => setUser({ ...user, location: e.target.value })}
-          />
+          <select
+              id={customer.location}
+              defaultValue={customer.location}
+              onChange={(e) => {
+                const location = e.target.value;
+                setUser({ ...user, location });
+              }}
+            >
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="mumbai">mumbai</option>
+              <option value="kerala">kerala</option>
+              <option value="kolkata">kolkata</option>
+              <option value="delhi">delhi</option>
+              <option value="karanataka">karanataka</option>
+            </select>
           <br />
           <label>Enter Age</label>
           <br />
