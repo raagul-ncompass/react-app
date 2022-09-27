@@ -10,7 +10,7 @@ export const InsertUser = ({ setRes, users, setUsers }) => {
     Customer_Name: "",
     Customer_Email: "",
     Contact: "",
-    location: "",
+    location: "Tamil Nadu",
     Password: "",
     Address: "",
     Gender: "",
@@ -120,8 +120,8 @@ export const InsertUser = ({ setRes, users, setUsers }) => {
           <label>Enter location</label>
           <br />
           <select
-              id={customer.location}
-              defaultValue={customer.location}
+              id={user.location}
+              defaultValue="Tamil Nadu"
               onChange={(e) => {
                 const location = e.target.value;
                 setUser({ ...user, location });
