@@ -13,6 +13,7 @@ export const ShowUser = ({
       <Link to="/signup" className="LinktoButton">
         INSERT TO DATABASE
       </Link>
+      <div className="scrolltable">
       <table>
         <caption className="headerRes">CUSTOMER DETAILS</caption>
         <tbody>
@@ -46,6 +47,7 @@ export const ShowUser = ({
           )}
         </tbody>
       </table>
+      </div>
     </>
   );
 };
