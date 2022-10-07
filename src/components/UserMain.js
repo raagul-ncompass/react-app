@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { ShowUser } from "./EditUser";
 
@@ -17,11 +18,12 @@ export const GetUserData = ({ setRes, users, setUsers }) => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const fetchedVal = await fetch(
-          `${process.env.REACT_APP_API}/user-details/alluserdata`
-        ).then((res) => res.json());
+        const fetchedVal = await axios.get(
+          `${process.env.REACT_APP_API}/user-details/alluserdata`,{mode: 'no-cors' }
+        ).then((res) => res.data);
         setUsers(fetchedVal);
       } catch (err) {
+        console.log(err)
         setRes(err.message);
       }
     };
